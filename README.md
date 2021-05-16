@@ -11,6 +11,8 @@ The code style is inspired from [hmmlearn](https://github.com/hmmlearn/hmmlearn)
 
 I implemented this on [Anaconda](https://www.anaconda.com/products/individual) (Python 3) on Windows. I need testing for other platforms.
 
+**Note:** This is the "test" branch, which is for prototyping. The "main" branch is for release.
+
 #### Implemented so far
 - EM algorithm (with & without right-censoring)
 - Scoring (log-likelihood of observation under the model)
@@ -32,6 +34,8 @@ I implemented this on [Anaconda](https://www.anaconda.com/products/individual) (
 - Left-censoring (I have difficulty understanding and implementing it)
 
 #### Installation & Tutorial
-For now, there is no installation; you need to download the ZIP for this repository. For tutorial, see the [notebooks](notebooks).
+For the "test" branch, download the ZIP for this repository.
+
+For tutorial, see the [notebooks](notebooks).
 
 Found a bug? Suggest a feature? Please post on [issues](https://github.com/poypoyan/edhmm/issues). 😊
