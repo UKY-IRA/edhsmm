@@ -25,8 +25,8 @@ See the README in the [test](https://github.com/poypoyan/edhsmm/tree/test) branc
 - scipy >= 0.19
 
 #### Installation & Tutorial
-```console
-pip install edhsmm
+```
+sudo setup.py install
 ```
 For tutorial, see the [notebooks](notebooks).
 
