@@ -122,7 +122,7 @@ class HSMM:
 
     # sample: generate random observation series
     def sample(self, n_samples=5, censoring=1, rnd_state=None):
-        self._init(None)   # see "note for programmers" in init() in GaussianHSMM
+        # self._init(None)   # see "note for programmers" in init() in GaussianHSMM
         self._check()
         # setup random state
         if rnd_state is None:
@@ -209,7 +209,7 @@ class HSMM:
     # score: log-likelihood computation from observation series
     def score(self, X, lengths=None, censoring=1):
         X = check_array(X)
-        self._init(X)
+        # self._init(X)
         self._check()
         logdur = log_mask_zero(self._dur_probmat())   # build logdur
         # main computations
@@ -225,7 +225,7 @@ class HSMM:
     # predict: hidden state & duration estimation from observation series
     def predict(self, X, lengths=None, censoring=1):
         X = check_array(X)
-        self._init(X)
+        # self._init(X)
         self._check()
         logdur = log_mask_zero(self._dur_probmat())   # build logdur
         # main computations
@@ -260,8 +260,8 @@ class HSMM:
                 score += logsumexp(gamma[0, :])   # this is the output of 'score' function
                 # preparation for reestimation / M-step
                 # this will make fit() slower than the previous version :(
-                xi.resize(j - i + 1, self.n_states, self.n_states)
-                eta.resize(j - i + 1, self.n_states, self.n_durations)
+                xi = np.resize(xi, (j - i + 1, self.n_states, self.n_states))
+                eta = np.resize(eta, (j - i + 1, self.n_states, self.n_durations))
                 xi[j - i] = tmat_num
                 eta[j - i] = dur_num
                 pi_num = logsumexp([pi_num, gamma[0]], axis=0)
@@ -371,7 +371,7 @@ class GaussianHSMM(HSMM):
             emission_var[0] = gamma
         else:
             old_emitlength = emission_var[0].shape[0]
-            emission_var[0].resize(old_emitlength + gamma.shape[0], self.n_states)
+            emission_var[0] = np.resize(emission_var[0], (old_emitlength + gamma.shape[0], self.n_states))
             emission_var[0][old_emitlength:] = gamma
 
     def _emission_mstep(self, X, emission_var):
